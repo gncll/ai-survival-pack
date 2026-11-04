@@ -19,8 +19,9 @@ shopt -s nullglob
 zims=("$LIBRARY"/*.zim)
 [ ${#zims[@]} -gt 0 ] || { echo "No ZIM files in $LIBRARY. Run scripts/download-content.sh first." >&2; exit 1; }
 
-pkill -f "kiwix-serve .*-p $KIWIX_PORT" 2>/dev/null || true
-sleep 0.5
+# Free the Kiwix port if an old run left it open.
+old=$(lsof -ti "tcp:$KIWIX_PORT" -sTCP:LISTEN 2>/dev/null || true)
+[ -z "$old" ] || { kill $old 2>/dev/null || true; sleep 0.5; }
 # kiwix-serve can crash under load, so a small loop restarts it. -a and the kill -0 check stop it with the server.
 # exec below keeps this PID, so $$ stays valid.
 (
