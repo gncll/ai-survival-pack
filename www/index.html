@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>AI Survival Pack :: Home</title>
+<!-- Layout and forum styling adapted from HAS_PrepperDisk by Burak Bozkurt (MIT License). See NOTICE.md. -->
+<style>
+  body{margin:0;background:#E5E5E5;color:#000;font-family:Verdana,Tahoma,Arial,sans-serif;font-size:11px}
+  a{color:#006699;text-decoration:none}
+  a:hover{color:#DD6900;text-decoration:underline}
+  .wrap{max-width:980px;margin:0 auto;padding:10px}
+  .bodyline{background:#fff;border:1px solid #98AAB1;padding:8px}
+
+  .top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;padding:4px 4px 10px}
+  .logo{font-family:"Trebuchet MS",Verdana,sans-serif;font-size:26px;font-weight:bold;color:#006699;letter-spacing:-1px;
+    text-shadow:1px 1px 0 #C7D0D7}
+  .logo span{color:#DD6900}
+  .slogan{font-size:11px;color:#555;margin-top:2px}
+  .navlinks{font-size:11px;font-weight:bold}
+  .navlinks a{margin-left:10px}
+  .navlinks a::before{content:"» ";color:#999;font-weight:normal}
+  .crumb{font-weight:bold;font-size:12px;margin:8px 2px}
+  .small{font-size:10px;color:#444}
+
+  .scroll{overflow-x:auto}
+  table.forumline{width:100%;border-collapse:collapse;border:1px solid #006699;background:#fff;margin-bottom:10px}
+  .forumline th{background:linear-gradient(#3F7FAD,#006699);color:#FFA34F;font-size:11px;font-weight:bold;
+    height:24px;padding:0 6px;border:1px solid #fff;border-top:0;white-space:nowrap}
+  .forumline td{padding:5px 6px;border:1px solid #fff}
+  td.cat{background:linear-gradient(#EEF2F5,#C7D0D7);height:22px;font-weight:bold;font-size:12px;letter-spacing:1px}
+  td.row1{background:#EFEFEF}
+  td.row2{background:#DEE3E7}
+  td.row3{background:#D1D7DC}
+  td.c{text-align:center}
+  .fname{font-size:12px;font-weight:bold}
+  .fdesc{font-size:11px;color:#222;margin-top:2px}
+  .off .fname{color:#777}
+
+  .fold{display:inline-block;position:relative;width:22px;height:16px;margin-top:4px;
+    background:linear-gradient(#FFE38A,#F2B935);border:1px solid #B07F12;border-radius:1px}
+  .fold::before{content:"";position:absolute;left:-1px;top:-5px;width:9px;height:4px;background:#F7CF5C;
+    border:1px solid #B07F12;border-bottom:0;border-radius:2px 2px 0 0}
+  .fold.gray{background:linear-gradient(#E6E6E6,#B9B9B9);border-color:#888}
+  .fold.gray::before{background:#D3D3D3;border-color:#888}
+
+  .search td{background:#EFEFEF}
+  .search input[type=text],.search select{font-family:Verdana,sans-serif;font-size:11px;border:1px solid #7F9DB9;padding:2px;background:#fff}
+  .search input[type=text]{width:220px;max-width:100%}
+  .btn{font-family:Verdana,sans-serif;font-size:11px;font-weight:bold;background:#FAFAFA;border:1px solid #000;padding:2px 8px;cursor:pointer;color:#000}
+  .btn:hover{background:#FFF3D6}
+  .btn:disabled{color:#888;border-color:#888;cursor:wait}
+
+  /* ask box */
+  #ask{table-layout:fixed}
+  #ask th{white-space:normal;height:auto;padding:5px 6px;line-height:1.3}
+  #question{width:100%;box-sizing:border-box;font-family:Verdana,sans-serif;font-size:13px;border:1px solid #7F9DB9;padding:6px;
+    background:#fff;resize:vertical;min-height:44px}
+  .askbar{display:flex;gap:6px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin-top:5px}
+  .chips{display:flex;gap:4px;flex-wrap:wrap}
+  .chip{font-family:Verdana,sans-serif;font-size:10px;background:#fff;border:1px solid #98AAB1;color:#006699;padding:2px 6px;cursor:pointer}
+  .chip:hover{color:#DD6900;border-color:#DD6900}
+
+  /* forum thread */
+  .post{display:grid;grid-template-columns:120px 1fr;border:1px solid #fff}
+  .post + .post{border-top:0}
+  .poster{background:#DEE3E7;padding:6px;font-size:10px;color:#444}
+  .poster b{display:block;font-size:12px;color:#006699;margin-bottom:2px}
+  .poster.ai b{color:#DD6900}
+  .message{background:#EFEFEF;padding:7px 9px;font-size:13px;line-height:1.55;min-width:0;overflow-wrap:anywhere}
+  .message p{margin:0 0 7px}
+  .message ol,.message ul{margin:0 0 7px;padding-left:22px}
+  .message li{margin-bottom:3px}
+  .cite{font-size:10px;font-weight:bold;vertical-align:super;padding:0 1px}
+  .status{font-size:11px;color:#555;font-style:italic}
+  .status::before{content:"";display:inline-block;width:8px;height:8px;margin-right:6px;background:#DD6900;animation:b 1s steps(2) infinite}
+  @keyframes b{50%{opacity:.15}}
+  .warn{background:#FFF3D6;border:1px solid #DD6900;padding:5px 7px;font-size:11px;margin:6px 0}
+  .notice{font-size:10px;color:#555;margin-top:6px}
+  .quote{background:#FAFAFA;border:1px solid #C7D0D7;margin-top:5px;padding:4px 7px;font-size:11px;line-height:1.45}
+  .quote summary{cursor:pointer}
+  .quote .src{font-weight:bold}
+  .quote blockquote{margin:5px 0 3px;color:#333;white-space:pre-wrap}
+  .srchead{font-size:10px;font-weight:bold;color:#444;letter-spacing:1px;margin-top:8px}
+
+  #qr{background:#fff;padding:4px;line-height:0;display:inline-block;border:1px solid #98AAB1}
+  #qr svg{width:112px;height:112px;display:block}
+  .connect{display:flex;gap:12px;align-items:flex-start;flex-wrap:wrap}
+  .connect code{font-family:Verdana,sans-serif;font-weight:bold;font-size:12px;color:#006699;overflow-wrap:anywhere}
+
+  .legend{display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin:4px 2px 10px}
+  .legend span{display:flex;align-items:center;gap:6px}
+  .legend .fold{margin-top:0;transform:scale(.8)}
+  .copy{text-align:center;font-size:10px;color:#444;margin:12px 0 4px;line-height:1.6}
+
+  @media (max-width:640px){
+    .wrap{padding:0}
+    .bodyline{border:0}
+    .hide-s{display:none}
+    .logo{font-size:22px}
+    .post{grid-template-columns:1fr}
+    .poster{padding:4px 7px}
+    .poster b{display:inline;margin-right:6px}
+    #question{font-size:16px}
+    .search input[type=text],.search select{font-size:16px;width:100%;box-sizing:border-box;margin-bottom:4px}
+    .chip{font-size:12px;padding:5px 8px}
+    .btn{font-size:14px;padding:6px 14px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap"><div class="bodyline">
+
+  <div class="top">
+    <div>
+      <div class="logo">AI <span>Survival</span> Pack</div>
+      <div class="slogan">Offline library + local AI &mdash; works with no internet</div>
+    </div>
+    <div class="navlinks">
+      <a href="#ask">Ask AI</a><a href="/kiwix/">Library</a><a href="/maps/">Maps</a>
+    </div>
+  </div>
+
+  <table class="forumline" id="ask">
+    <tr><th>Ask the Pack &mdash; answers come only from your offline library</th></tr>
+    <tr><td class="row1">
+      <form id="askform">
+        <textarea id="question" rows="2" maxlength="500" placeholder="Any language. How do I make dirty water safe to drink?"></textarea>
+        <div class="askbar">
+          <div class="chips" id="chips"></div>
+          <input type="submit" class="btn" id="askbtn" value="Ask">
+        </div>
+      </form>
+    </td></tr>
+  </table>
+  <div id="thread"></div>
+
+  <table class="forumline search"><tr><td>
+    <form id="search">
+      <b>Search the library:</b>
+      <input type="text" id="q" placeholder="first aid, water purification...">
+      <select id="book"></select>
+      <input type="submit" class="btn" value="Go">
+    </form>
+  </td></tr></table>
+
+  <div class="crumb"><a href="/">AI Survival Pack Home</a></div>
+
+  <div class="scroll">
+  <table class="forumline" id="forums">
+    <tr>
+      <th colspan="2">Section</th>
+      <th class="hide-s" width="50">Lang</th>
+      <th width="70">Size</th>
+      <th class="hide-s" width="120">Status</th>
+    </tr>
+  </table>
+  </div>
+
+  <div class="legend small">
+    <span><i class="fold"></i> Ready</span>
+    <span><i class="fold gray"></i> Not downloaded yet</span>
+  </div>
+
+  <table class="forumline">
+    <tr><td class="cat">Connect your phone</td></tr>
+    <tr><td class="row1">
+      <div class="connect">
+        <div id="qr"></div>
+        <div>
+          Join the same Wi-Fi or hotspot as this computer, then scan the code or open:<br><br>
+          <code id="lanurl">&hellip;</code><br><br>
+          <span class="small">Several people can connect at once. Nothing to install.</span>
+        </div>
+      </div>
+    </td></tr>
+  </table>
+
+  <table class="forumline">
+    <tr><td class="cat">System</td></tr>
+    <tr><td class="row1" id="stats"></td></tr>
+  </table>
+
+  <div class="copy">
+    AI Survival Pack &middot; Runs on your own computer &middot; No account, no cloud<br>
+    Page design adapted from <a href="https://github.com/schematrix/HAS_Prepper_Disk">HAS_PrepperDisk</a> by Burak Bozkurt (MIT)<br>
+    Content: Wikipedia, OpenStreetMap, Kiwix and others under their own licenses
+  </div>
+
+</div></div>
+
+<script src="/vendor/qrcode.js"></script>
+<script>
+const CATS = [
+  { title:"Maps", items:[
+    { name:"World Map", desc:"Cities worldwide, street level for the region you downloaded.", lang:"—", size:"map", url:"/maps/" },
+  ]},
+  { title:"Health & First Aid", items:[
+    { name:"NHS Medicines A-Z", desc:"What a medicine is for, how to take it, side effects.", lang:"EN", size:"15 MB", zim:"nhs.uk_en_medicines", search:true },
+    { name:"WikiMed", desc:"Wikipedia's medical articles: diseases, drugs, anatomy.", lang:"EN", size:"1 GB", zim:"wikipedia_en_medicine", search:true },
+    { name:"Military Field Medicine", desc:"Trauma and casualty care in the field.", lang:"EN", size:"62 MB", zim:"irp.fas.org_en_military-medicine", search:true },
+    { name:"Medical Library", desc:"First aid and medicine books (PDF).", lang:"EN", size:"67 MB", zim:"zimgit-medicine_en" },
+    { name:"MDWiki", desc:"Medical encyclopedia written by doctors.", lang:"EN", size:"2.1 GB", zim:"mdwiki_en_all", search:true },
+  ]},
+  { title:"Survival & Preparedness", items:[
+    { name:"Ready.gov", desc:"US government disaster guides: earthquake, flood, fire, 72-hour kit.", lang:"EN", size:"1.9 GB", zim:"ready.gov_en_all", search:true },
+    { name:"Water Treatment", desc:"Finding, purifying and storing drinking water (PDF).", lang:"EN", size:"20 MB", zim:"zimgit-water_en" },
+    { name:"Food for Preppers", desc:"Canning, drying and long-term food storage (PDF).", lang:"EN", size:"93 MB", zim:"zimgit-food-preparation_en" },
+    { name:"Post-Disaster Library", desc:"Shelter, energy, farming and rebuilding (PDF).", lang:"EN", size:"615 MB", zim:"zimgit-post-disaster_en" },
+    { name:"Knots", desc:"Knots for climbing, fishing and rescue (PDF).", lang:"EN", size:"27 MB", zim:"zimgit-knots_en" },
+    { name:"Low-tech Magazine", desc:"Practical low-tech and off-grid solutions.", lang:"EN", size:"668 MB", zim:"solar.lowtechmagazine.com", search:true },
+    { name:"Outdoors Q&A", desc:"Camping, hiking and surviving outdoors.", lang:"EN", size:"135 MB", zim:"outdoors.stackexchange.com", search:true },
+  ]},
+  { title:"Encyclopedia", items:[
+    { name:"Wikipedia, Best Of", desc:"The most-read English articles, without images.", lang:"EN", size:"2.6 GB", zim:"wikipedia_en_top", search:true },
+    { name:"Vikipedi, Best Of", desc:"The most-read Turkish articles, without images.", lang:"TR", size:"591 MB", zim:"wikipedia_tr_top", search:true },
+    { name:"Wikipedia, Complete", desc:"All of English Wikipedia with images. Needs an external SSD.", lang:"EN", size:"127 GB", zim:"wikipedia_en_all", search:true },
+    { name:"Vikipedi, Complete", desc:"All of Turkish Wikipedia with images.", lang:"TR", size:"9 GB", zim:"wikipedia_tr_all", search:true },
+  ]},
+  { title:"Repair & Skills", items:[
+    { name:"iFixit", desc:"Step-by-step repair guides for phones, cars and appliances.", lang:"EN", size:"3.3 GB", zim:"ifixit_en_all", search:true },
+  ]},
+];
+const EXAMPLES = [
+  "How do I make dirty water safe to drink?",
+  "How do I stop heavy bleeding?",
+  "What should a 72-hour emergency kit contain?",
+  "Deprem sırasında ne yapmalıyım?",
+];
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+
+/* ---------- library table ---------- */
+async function loadBooks(){
+  try{
+    const r = await fetch("/kiwix/catalog/v2/entries?count=-1");
+    const xml = new DOMParser().parseFromString(await r.text(), "application/xml");
+    const books = [];
+    for (const e of xml.querySelectorAll("entry")) {
+      const l = e.querySelector('link[type="text/html"]');
+      if (!l) continue;
+      const href = l.getAttribute("href");
+      books.push({ id: href.split("/").filter(Boolean).pop(), href, title: (e.querySelector("title")||{}).textContent || "" });
+    }
+    return books;
+  }catch(e){ return null; }
+}
+
+function renderLibrary(books, info){
+  let html = "", ready = 0, total = 0;
+  const used = new Set(), sel = $("book");
+  sel.add(new Option("Whole library", ""));
+  for (const c of CATS) {
+    html += `<tr><td class="cat" colspan="5">${esc(c.title)}</td></tr>`;
+    for (const i of c.items) {
+      total++;
+      let url = null, status = "Not downloaded", size = i.size;
+      if (i.url) {
+        url = info && info.maps.length ? i.url : null;
+        status = url ? "Installed" : status;
+        size = url ? `${info.maps_gb} GB` : "—";
+      }
+      if (i.zim && books) {
+        const b = books.filter(b => b.id.startsWith(i.zim)).sort((a,z) => a.id < z.id ? 1 : -1)[0];
+        if (b) {
+          used.add(b.id); url = b.href;
+          const v = b.id.match(/(\d{4})-(\d{2})[a-z]?$/);
+          status = v ? `${v[2]}/${v[1]} edition` : "Installed";
+          if (i.search) sel.add(new Option(i.name, b.id));
+        }
+      }
+      if (url) ready++;
+      const name = url ? `<a href="${esc(url)}" class="fname">${esc(i.name)}</a>` : `<span class="fname">${esc(i.name)}</span>`;
+      html += `<tr class="${url ? "" : "off"}">
+        <td class="row1 c" width="40"><i class="fold${url ? "" : " gray"}"></i></td>
+        <td class="row1">${name}<div class="fdesc">${esc(i.desc)}</div></td>
+        <td class="row2 c hide-s">${esc(i.lang)}</td>
+        <td class="row2 c">${esc(size)}</td>
+        <td class="row3 hide-s small">${esc(status)}</td></tr>`;
+    }
+  }
+  const others = (books || []).filter(b => !used.has(b.id));
+  if (others.length) {
+    html += `<tr><td class="cat" colspan="5">Other Sources</td></tr>`;
+    for (const b of others) {
+      total++; ready++;
+      html += `<tr><td class="row1 c" width="40"><i class="fold"></i></td>
+        <td class="row1"><a href="${esc(b.href)}" class="fname">${esc(b.title || b.id)}</a><div class="fdesc">${esc(b.id)}</div></td>
+        <td class="row2 c hide-s">—</td><td class="row2 c">—</td>
+        <td class="row3 hide-s small">Installed</td></tr>`;
+    }
+  }
+  $("forums").insertAdjacentHTML("beforeend", html);
+  const lines = [`<b>${ready}</b> of <b>${total}</b> sources ready.`];
+  if (info) {
+    lines.push(`Library: <b>${info.library_gb} GB</b> &middot; Maps: <b>${info.maps_gb} GB</b> &middot; Free disk: <b>${info.free_gb} GB</b>`);
+    if (info.pdf_pages) lines.push(`AI can read <b>${info.pdf_files}</b> PDF books (<b>${info.pdf_pages.toLocaleString("en")}</b> pages).`);
+    lines.push(`AI model: <b>${esc(info.model)}</b> ${info.model_ready ? "(ready, on this computer)" : "(<b>not running</b>, start Ollama)"}`);
+  }
+  lines.push("This page works with no internet connection.");
+  $("stats").innerHTML = lines.join("<br>");
+}
+
+function renderConnect(info){
+  const url = (info && info.urls[0]) || location.origin;
+  $("lanurl").textContent = url;
+  try{
+    const qr = qrcode(0, "M"); qr.addData(url); qr.make();
+    $("qr").innerHTML = qr.createSvgTag({ cellSize: 3, margin: 0, scalable: true });
+  }catch(e){ $("qr").style.display = "none"; }
+}
+
+/* ---------- ask ---------- */
+function renderAnswer(text, n){
+  const inline = s => esc(s)
+    .replace(/\*\*(.+?)\*\*/g, "<b>$1</b>")
+    .replace(/\[(\d+(?:,\s*\d+)*)\]/g, (m, list) => list.split(",").map(k => k.trim())
+      .map(k => k <= n ? `<a class="cite" href="#" data-src="${k}">[${k}]</a>` : `[${k}]`).join(""));
+  let html = "", list = null;
+  const close = () => { if (list) { html += `</${list}>`; list = null; } };
+  for (const raw of text.split("\n")) {
+    const line = raw.trim();
+    const ol = line.match(/^\d+[.)]\s+(.*)/), ul = line.match(/^[-*•]\s+(.*)/);
+    if (ol || ul) {
+      const want = ol ? "ol" : "ul";
+      if (list !== want) { close(); html += `<${want}>`; list = want; }
+      html += `<li>${inline((ol || ul)[1])}</li>`;
+    } else {
+      close();
+      if (line) html += `<p>${inline(line)}</p>`;
+    }
+  }
+  close();
+  return html;
+}
+
+function addPost(who, cls, bodyHtml){
+  const div = document.createElement("div");
+  div.className = "post";
+  div.innerHTML = `<div class="poster ${cls}"><b>${esc(who)}</b><span class="hide-s">${cls === "ai" ? "Local model<br>No internet used" : "Asking"}</span></div>
+                   <div class="message">${bodyHtml}</div>`;
+  $("thread").prepend(div);
+  return div.querySelector(".message");
+}
+
+async function ask(question){
+  $("askbtn").disabled = true;
+  const answerEl = addPost("Survival Pack AI", "ai", `<div class="status">Starting</div><div class="a"></div><div class="w"></div><div class="s"></div>`);
+  const aiPost = answerEl.parentElement;
+  const userPost = addPost("You", "", `<p>${esc(question)}</p>`).parentElement;
+  const group = document.createElement("table");
+  group.className = "forumline";
+  group.innerHTML = "<tr><td style='padding:0'></td></tr>";
+  group.querySelector("td").append(userPost, aiPost);
+  $("thread").prepend(group);
+
+  const status = answerEl.querySelector(".status"), a = answerEl.querySelector(".a"),
+        w = answerEl.querySelector(".w"), s = answerEl.querySelector(".s");
+  let text = "", sources = [], notFound = false, seconds = null;
+  const handle = ev => {
+    if (ev.type === "status") status.textContent = ev.text;
+    if (ev.type === "sources") { sources = ev.items; renderSources(s, sources); }
+    if (ev.type === "token") { text += ev.text; a.innerHTML = renderAnswer(text, sources.length); }
+    if (ev.type === "not_found") {
+      notFound = true; text = "";
+      a.innerHTML = `<p><b>This is not in your library.</b> I will not guess. Try other words, or browse the sections below.</p>`;
+    }
+    if (ev.type === "warning") {
+      const bits = [];
+      if (ev.numbers.length) bits.push(`These numbers do not appear in the sources: <b>${ev.numbers.map(esc).join(", ")}</b>. Do not rely on them.`);
+      if (ev.uncited) bits.push("This answer has no source citations. Check the passages below yourself.");
+      if (ev.bad_citation) bits.push("This answer cites a source that does not exist. Check the passages below yourself.");
+      w.innerHTML = `<div class="warn">${bits.join(" ")}</div>`;
+    }
+    if (ev.type === "error") { a.innerHTML = `<div class="warn">${esc(ev.text)}</div>`; }
+    if (ev.type === "done") { seconds = ev.seconds; }
+  };
+  try{
+    const r = await fetch("/api/ask", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({question}) });
+    if (!r.ok) throw new Error(await r.text());
+    const reader = r.body.getReader(), dec = new TextDecoder();
+    let buf = "";
+    for (;;) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      buf += dec.decode(value, { stream:true });
+      let i;
+      while ((i = buf.indexOf("\n")) >= 0) {
+        const line = buf.slice(0, i); buf = buf.slice(i + 1);
+        if (line.trim()) handle(JSON.parse(line));
+      }
+    }
+  }catch(e){
+    a.innerHTML = `<div class="warn">Could not reach the AI: ${esc(e.message)}. Is Ollama running on this computer?</div>`;
+  }
+  status.remove();
+  if (!notFound && text) {
+    answerEl.insertAdjacentHTML("beforeend",
+      `<div class="notice">AI answers can be wrong. Check the source passages. If you can reach emergency services, call them first.${seconds ? ` &middot; ${seconds}s` : ""}</div>`);
+  }
+  answerEl.addEventListener("click", e => {
+    const k = e.target.dataset && e.target.dataset.src;
+    if (!k) return;
+    e.preventDefault();
+    const d = answerEl.querySelector(`details[data-n="${k}"]`);
+    if (d) { d.open = true; d.scrollIntoView({ block:"nearest", behavior:"smooth" }); }
+  });
+  $("askbtn").disabled = false;
+}
+
+function renderSources(el, items){
+  if (!items.length) return;
+  el.innerHTML = `<div class="srchead">SOURCES FROM YOUR LIBRARY</div>` + items.map(s =>
+    `<details class="quote" data-n="${s.n}"><summary><span class="src">[${s.n}] ${esc(s.title)}</span> &middot; ${esc(s.book)}</summary>
+     <blockquote>${esc(s.excerpt)}</blockquote><a href="${esc(s.url)}" target="_blank" rel="noopener">Open full source &raquo;</a></details>`).join("");
+}
+
+/* ---------- wiring ---------- */
+for (const ex of EXAMPLES) {
+  const b = document.createElement("button");
+  b.type = "button"; b.className = "chip"; b.textContent = ex;
+  b.onclick = () => { $("question").value = ex; $("askform").requestSubmit(); };
+  $("chips").append(b);
+}
+$("askform").addEventListener("submit", e => {
+  e.preventDefault();
+  const q = $("question").value.trim();
+  if (q && !$("askbtn").disabled) ask(q);
+});
+$("question").addEventListener("keydown", e => {
+  if (e.key === "Enter" && !e.shiftKey) { e.preventDefault(); $("askform").requestSubmit(); }
+});
+$("search").addEventListener("submit", e => {
+  e.preventDefault();
+  const q = $("q").value.trim(), book = $("book").value;
+  if (!q) return;
+  location.href = book
+    ? `/kiwix/search?books.name=${encodeURIComponent(book)}&pattern=${encodeURIComponent(q)}`
+    : `/kiwix/search?pattern=${encodeURIComponent(q)}`;
+});
+
+Promise.all([loadBooks(), fetch("/api/info").then(r => r.json()).catch(() => null)]).then(([books, info]) => {
+  renderLibrary(books, info);
+  renderConnect(info);
+});
+</script>
+</body>
+</html>

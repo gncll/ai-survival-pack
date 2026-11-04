@@ -1,0 +1,9 @@
+bin/
+library/
+maps/
+logs/
+.venv/
+__pycache__/
+*.part
+.DS_Store
+tests/results.json
