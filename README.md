@@ -7,7 +7,7 @@ Built for macOS on Apple Silicon. Tested on an M3 Pro with 18 GB of RAM.
 
 ## Setup
 
-Needs [Ollama](https://ollama.com), Python 3 and about 18 GB of free disk.
+Needs [Ollama](https://ollama.com), Python 3 and about 30 GB of free disk. The pack takes about 14 GB and the downloader keeps 12 GB free.
 
 ```bash
 git clone https://github.com/gncll/ai-survival-pack.git
