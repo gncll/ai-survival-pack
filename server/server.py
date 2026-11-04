@@ -633,7 +633,7 @@ def info():
     if PDF_INDEX.exists():
         db = sqlite3.connect(f"file:{PDF_INDEX}?mode=ro", uri=True)
         try:
-            pdf_books, pdf_pages = db.execute("SELECT count(DISTINCT path), count(*) FROM pages").fetchone()
+            pdf_books, pdf_pages = db.execute("SELECT sum(with_text), sum(pages) FROM done").fetchone()
         except sqlite3.Error:
             pass
         finally:
